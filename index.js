@@ -18,7 +18,7 @@ miro.onReady( async () => {
     ];
     for (let i = 0; i < events.length; i++) {
         try {
-            miro.addListener(events[i], (e) => {
+            await miro.addListener(events[i], (e) => {
                 console.log(`${plugin_name} | ${clientId} | ${JSON.stringify(e.data)}`)
             })
         } catch (e) {
