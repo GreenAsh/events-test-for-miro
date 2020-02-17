@@ -1,9 +1,11 @@
-const plugin_name = 'events-plugin';
-
 miro.onReady( async () => {
+    const plugin_name = 'events-plugin'
+    const clientId = await miro.getClientId()
+    
     window.addEventListener("message", async (event) => {
-        console.log(`${plugin_name} | ${await miro.getClientId()} | ${JSON.stringify(event.data)}`);
+        console.log(`${plugin_name} | ${} | ${JSON.stringify(event.data)}`)
     })
+
     const events = [
         'SELECTION_UPDATED',
         'WIDGETS_CREATED',
