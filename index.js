@@ -1,10 +1,6 @@
 miro.onReady( async () => {
     const plugin_name = 'events-plugin'
     const clientId = await miro.getClientId()
-    
-    window.addEventListener("message", async (event) => {
-        console.log(`${plugin_name} | ${clientId} | ${JSON.stringify(event.data)}`)
-    })
 
     const events = [
         'SELECTION_UPDATED',
@@ -21,6 +17,8 @@ miro.onReady( async () => {
         'ONLINE_USERS_CHANGED'
     ];
     for (let i = 0; i < events.length; i++) {
-        miro.addListener(events[i], () => {})
+        miro.addListener(events[i], (e) => {
+            console.log(`${plugin_name} | ${clientId} | ${JSON.stringify(e.data)}`)
+        })
     }
 } );
