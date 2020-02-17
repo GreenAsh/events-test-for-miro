@@ -17,8 +17,12 @@ miro.onReady( async () => {
         'ONLINE_USERS_CHANGED'
     ];
     for (let i = 0; i < events.length; i++) {
-        miro.addListener(events[i], (e) => {
-            console.log(`${plugin_name} | ${clientId} | ${JSON.stringify(e.data)}`)
-        })
+        try {
+            miro.addListener(events[i], (e) => {
+                console.log(`${plugin_name} | ${clientId} | ${JSON.stringify(e.data)}`)
+            })
+        } catch (e) {
+            console.warn(`${plugin_name} | ${clientId} `, e)
+        }
     }
 } );
