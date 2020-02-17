@@ -1,45 +1,24 @@
-miro.onReady(async () => {
-// check if user is authorized these plugin
-//     const authorized = await miro.isAuthorized();
-//     if (!authorized) {
-//         return;
-//     }
+const plugin_name = 'events-plugin';
 
-//     await miro.initialize({
-//         extensionPoints: {
-//             toolbar: {
-//                 title: 'string',
-//                 toolbarSvgIcon: 'string',
-//                 librarySvgIcon: 'string',
-//                 onClick: () => {
-//                     //do something
-//                 }
-//             },
-//             bottomBar: {
-//                 title: 'string',
-//                 toolbarSvgIcon: 'string',
-//                 librarySvgIcon: 'string',
-//                 onClick: () => {
-//                     //do something
-//                 }
-//             },
-//             exportMenu: {
-//                 title: 'string',
-//                 toolbarSvgIcon: 'string',
-//                 librarySvgIcon: 'string',
-//                 onClick: () => {
-//                     //do something
-//                 }
-//             },
-//             getWidgetMenuItems: async (widgets) => {
-//                 return [{
-//                     tooltip: 'string'
-//             	    svgIcon: 'string',
-//             	    onClick: () => {
-//                         //do something
-//                     }
-//                 }];
-//             }
-//         }
-//     })
-});
+miro.onReady( async () => {
+    window.addEventListener("message", async (event) => {
+        console.log(`${plugin_name} | ${await miro.getClientId()} | ${JSON.stringify(event.data)}`);
+    })
+    const events = [
+        'SELECTION_UPDATED',
+        'WIDGETS_CREATED',
+        'WIDGETS_DELETED',
+        'WIDGETS_TRANSFORMATION_UPDATED',
+        'ESC_PRESSED',
+        'ALL_WIDGETS_LOADED',
+        'COMMENT_CREATED',
+        'CANVAS_CLICKED',
+        'DATA_BROADCASTED',
+        'RUNTIME_STATE_UPDATED',
+        'METADATA_CHANGED',
+        'ONLINE_USERS_CHANGED'
+    ];
+    for (let i = 0; i < events.length; i++) {
+        miro.addListener(events[i], () => {})
+    }
+} );
