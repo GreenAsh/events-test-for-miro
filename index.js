@@ -3,7 +3,7 @@ miro.onReady( async () => {
     const clientId = await miro.getClientId()
     
     window.addEventListener("message", async (event) => {
-        console.log(`${plugin_name} | ${} | ${JSON.stringify(event.data)}`)
+        console.log(`${plugin_name} | ${clientId} | ${JSON.stringify(event.data)}`)
     })
 
     const events = [
